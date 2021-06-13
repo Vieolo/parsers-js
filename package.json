@@ -1,0 +1,19 @@
+{
+  "name": "@vieolo/parsers",
+  "version": "0.0.1",
+  "description": "The Parser functions",
+  "main": "dist/index.js",
+  "scripts": {
+    "test": "jest --runInBand"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Vieolo/parsers-js.git"
+  },
+  "author": "Vieolo",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/Vieolo/parsers-js/issues"
+  },
+  "homepage": "https://github.com/Vieolo/parsers-js#readme"
+}
