@@ -1,1 +1,3 @@
-export { hourAndMinuteToDecimal } from './time_parsers/index';
+export { 
+    parseHourAndMinute 
+} from './time_parsers/index';
