@@ -1,3 +1,4 @@
 export { 
-    parseHourAndMinute 
+    parseHourAndMinute,
+    parseDecimalTime
 } from './time_parsers';
