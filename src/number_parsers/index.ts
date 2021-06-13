@@ -1,4 +1,5 @@
 export {
     toFixed,
-    toFixedFloat
+    toFixedFloat,
+    parseInputFloatToSafeString
 } from './number_parsers';
