@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/Vieolo/parsers-js/issues"
   },
-  "homepage": "https://github.com/Vieolo/parsers-js#readme"
+  "homepage": "https://github.com/Vieolo/parsers-js#readme",
+  "dependencies": {
+    "@vieolo/date": "github:Vieolo/date-js#master"
+  }
 }
