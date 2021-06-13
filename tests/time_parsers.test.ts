@@ -1,5 +1,5 @@
 // Parsers
-import { parseHourAndMinute } from '../src/time_parsers/time_parsers'
+import { parseHourAndMinute, parseDecimalTime } from '../src/time_parsers/time_parsers'
 
 
 describe("Time Parsers", () => {
@@ -73,7 +73,7 @@ describe("Time Parsers", () => {
 
 
         //#region to string
-        
+
         expect(parseHourAndMinute(2, 20, "string")).toBe("02:20");
         expect(parseHourAndMinute(_0[0], _0[1], "string")).toBe("20:00");
         expect(parseHourAndMinute(_1[0], _1[1], "string")).toBe("20:01");
@@ -173,7 +173,7 @@ describe("Time Parsers", () => {
         expect(parseHourAndMinute(_14[0], _14[1], "date").getMinutes()).toBe(_14[1]);
         expect(parseHourAndMinute(_15[0], _15[1], "date").getHours()).toBe(_15[0]);
         expect(parseHourAndMinute(_15[0], _15[1], "date").getMinutes()).toBe(_15[1]);
-        expect(parseHourAndMinute(_16[0], _16[1], "date").getHours()).toBe(_16[0]); 
+        expect(parseHourAndMinute(_16[0], _16[1], "date").getHours()).toBe(_16[0]);
         expect(parseHourAndMinute(_16[0], _16[1], "date").getMinutes()).toBe(_16[1]);
         expect(parseHourAndMinute(_17[0], _17[1], "date").getHours()).toBe(_17[0]);
         expect(parseHourAndMinute(_17[0], _17[1], "date").getMinutes()).toBe(_17[1]);
@@ -299,7 +299,7 @@ describe("Time Parsers", () => {
         expect(parseHourAndMinute(_14[0], _14[1], "vdate").getMinutes()).toBe(_14[1]);
         expect(parseHourAndMinute(_15[0], _15[1], "vdate").getHours()).toBe(_15[0]);
         expect(parseHourAndMinute(_15[0], _15[1], "vdate").getMinutes()).toBe(_15[1]);
-        expect(parseHourAndMinute(_16[0], _16[1], "vdate").getHours()).toBe(_16[0]); 
+        expect(parseHourAndMinute(_16[0], _16[1], "vdate").getHours()).toBe(_16[0]);
         expect(parseHourAndMinute(_16[0], _16[1], "vdate").getMinutes()).toBe(_16[1]);
         expect(parseHourAndMinute(_17[0], _17[1], "vdate").getHours()).toBe(_17[0]);
         expect(parseHourAndMinute(_17[0], _17[1], "vdate").getMinutes()).toBe(_17[1]);
@@ -389,10 +389,10 @@ describe("Time Parsers", () => {
         expect(parseHourAndMinute(_59[0], _59[1], "vdate").getMinutes()).toBe(_59[1]);
 
         //#endregion
-    
-    
+
+
         //#region to decimal-string
-        
+
         expect(parseHourAndMinute(_0[0], _0[1], "decimal-string")).toBe("20.00");
         expect(parseHourAndMinute(_1[0], _1[1], "decimal-string")).toBe("20.02");
         expect(parseHourAndMinute(_2[0], _2[1], "decimal-string")).toBe("20.03");
@@ -463,14 +463,14 @@ describe("Time Parsers", () => {
         expect(parseHourAndMinute(9, 13, "decimal-string")).toBe("9.22");
         expect(parseHourAndMinute(4, 25, "decimal-string")).toBe("4.42");
         expect(parseHourAndMinute(3, 58, "decimal-string")).toBe("3.97");
-        expect(parseHourAndMinute(2, 42, "decimal-string")).toBe("2.70");        
+        expect(parseHourAndMinute(2, 42, "decimal-string")).toBe("2.70");
 
         //#endregion
 
 
 
         //#region to decimal-float
-        
+
         expect(parseHourAndMinute(_0[0], _0[1], "decimal-float")).toBe(20.00);
         expect(parseHourAndMinute(_1[0], _1[1], "decimal-float")).toBe(20.02);
         expect(parseHourAndMinute(_2[0], _2[1], "decimal-float")).toBe(20.03);
@@ -541,10 +541,49 @@ describe("Time Parsers", () => {
         expect(parseHourAndMinute(9, 13, "decimal-float")).toBe(9.22);
         expect(parseHourAndMinute(4, 25, "decimal-float")).toBe(4.42);
         expect(parseHourAndMinute(3, 58, "decimal-float")).toBe(3.97);
-        expect(parseHourAndMinute(2, 42, "decimal-float")).toBe(2.70);        
+        expect(parseHourAndMinute(2, 42, "decimal-float")).toBe(2.70);
 
         //#endregion
-    
+
+    })
+
+
+    it("parses decimal time correctly", () => {
+
+        expect(parseDecimalTime(11.95)).toEqual("11:57");
+        expect(parseDecimalTime(12.12)).toEqual("12:07");
+        expect(parseDecimalTime(10.85)).toEqual("10:51");
+        expect(parseDecimalTime(14.2)).toEqual("14:12");
+        expect(parseDecimalTime(10.63)).toEqual("10:38");
+        expect(parseDecimalTime(8.43)).toEqual("08:26");
+        expect(parseDecimalTime(0)).toEqual("00:00");
+        expect(parseDecimalTime(11.88)).toEqual("11:53");
+        expect(parseDecimalTime(12.45)).toEqual("12:27");
+        expect(parseDecimalTime(9.9)).toEqual("09:54");
+        expect(parseDecimalTime(12.63)).toEqual("12:38");
+        expect(parseDecimalTime(11.50)).toEqual("11:30");
+        expect(parseDecimalTime(9.08)).toEqual("09:05");
+        expect(parseDecimalTime(67.35)).toEqual("67:21")
+        expect(parseDecimalTime(2.05)).toEqual("02:03")
+        expect(parseDecimalTime(8.05)).toEqual("08:03")
+
+        expect(parseDecimalTime(11.95, true)).toEqual("11:57:00");
+        expect(parseDecimalTime(12.12, true)).toEqual("12:07:12");
+        expect(parseDecimalTime(10.85, true)).toEqual("10:51:00");
+        expect(parseDecimalTime(14.2, true)).toEqual("14:12:00");
+        expect(parseDecimalTime(10.63, true)).toEqual("10:37:48");
+        expect(parseDecimalTime(8.43, true)).toEqual("08:25:48");
+        expect(parseDecimalTime(0, true)).toEqual("00:00:00");
+        expect(parseDecimalTime(11.88, true)).toEqual("11:52:48");
+        expect(parseDecimalTime(12.45, true)).toEqual("12:27:00");
+        expect(parseDecimalTime(9.9, true)).toEqual("09:54:00");
+        expect(parseDecimalTime(12.63, true)).toEqual("12:37:48");
+        expect(parseDecimalTime(11.50, true)).toEqual("11:30:00");
+        expect(parseDecimalTime(9.08, true)).toEqual("09:04:48");
+        expect(parseDecimalTime(67.35, true)).toEqual("67:21:00")
+        expect(parseDecimalTime(2.05, true)).toEqual("02:03:00")
+        expect(parseDecimalTime(8.05, true)).toEqual("08:03:00")
+
     })
 
 })
