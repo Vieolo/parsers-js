@@ -1,1 +1,1 @@
-export { parseHourAndMinute, parseDecimalTime } from './time_parsers';
+export { parseHourAndMinute, parseDecimalTime, parseFormattedTime, parseMinuteCount } from './time_parsers';
