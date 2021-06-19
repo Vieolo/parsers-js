@@ -1,6 +1,8 @@
 export { 
     parseHourAndMinute,
-    parseDecimalTime
+    parseDecimalTime,
+    parseFormattedTime,
+    parseMinuteCount
 } from './time_parsers/index';
 
 export {
