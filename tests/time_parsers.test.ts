@@ -1,5 +1,9 @@
 // Parsers
-import { parseHourAndMinute, parseDecimalTime } from '../src/time_parsers/time_parsers'
+import { 
+    parseHourAndMinute, 
+    parseDecimalTime,
+    parseMinuteCount
+} from '../src/time_parsers/time_parsers'
 
 
 describe("Time Parsers", () => {
@@ -583,6 +587,71 @@ describe("Time Parsers", () => {
         expect(parseDecimalTime(67.35, true)).toEqual("67:21:00")
         expect(parseDecimalTime(2.05, true)).toEqual("02:03:00")
         expect(parseDecimalTime(8.05, true)).toEqual("08:03:00")
+
+    })
+
+
+    it('parses minute count correctly', () => {
+
+        //#region to decimal-string
+
+        expect(parseMinuteCount(126, 'decimal-string')).toBe("2.10");
+        expect(parseMinuteCount(0, 'decimal-string')).toBe("0.00");
+        expect(parseMinuteCount(1, 'decimal-string')).toBe("0.02");
+        expect(parseMinuteCount(60, 'decimal-string')).toBe("1.00");
+        expect(parseMinuteCount(76, 'decimal-string')).toBe("1.27");
+
+        //#endregion
+
+
+        //#region to decimal-number
+
+        expect(parseMinuteCount(126, 'decimal-number')).toBe(2.10);
+        expect(parseMinuteCount(0, 'decimal-number')).toBe(0.00);
+        expect(parseMinuteCount(1, 'decimal-number')).toBe(0.02);
+        expect(parseMinuteCount(60, 'decimal-number')).toBe(1.00);
+        expect(parseMinuteCount(76, 'decimal-number')).toBe(1.27);
+
+        //#endregion
+
+
+
+        //#region to formatted-hour-minute
+
+        expect(parseMinuteCount(126, 'formatted-hour-minute')).toBe("2h 6m");
+        expect(parseMinuteCount(0, 'formatted-hour-minute')).toBe("0m");
+        expect(parseMinuteCount(1, 'formatted-hour-minute')).toBe("1m");
+        expect(parseMinuteCount(60, 'formatted-hour-minute')).toBe("1h 0m");
+        expect(parseMinuteCount(76, 'formatted-hour-minute')).toBe("1h 16m");
+
+        //#endregion
+
+
+        //#region to formatted-time
+
+        expect(parseMinuteCount(126, 'formatted-time')).toBe("02:06");
+        expect(parseMinuteCount(0, 'formatted-time')).toBe("00:00");
+        expect(parseMinuteCount(1, 'formatted-time')).toBe("00:01");
+        expect(parseMinuteCount(60, 'formatted-time')).toBe("01:00");
+        expect(parseMinuteCount(76, 'formatted-time')).toBe("01:16");
+
+        //#endregion
+
+
+        //#region to VDate
+
+        expect(parseMinuteCount(126, 'vdate').getHours()).toBe(2);
+        expect(parseMinuteCount(126, 'vdate').getMinutes()).toBe(6);
+        expect(parseMinuteCount(0, 'vdate').getHours()).toBe(0);
+        expect(parseMinuteCount(0, 'vdate').getMinutes()).toBe(0);
+        expect(parseMinuteCount(1, 'vdate').getHours()).toBe(0);
+        expect(parseMinuteCount(1, 'vdate').getMinutes()).toBe(1);
+        expect(parseMinuteCount(60, 'vdate').getHours()).toBe(1);
+        expect(parseMinuteCount(60, 'vdate').getMinutes()).toBe(0);
+        expect(parseMinuteCount(76, 'vdate').getHours()).toBe(1);
+        expect(parseMinuteCount(76, 'vdate').getMinutes()).toBe(16);
+
+        //#endregion
 
     })
 
