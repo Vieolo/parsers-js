@@ -1,5 +1,9 @@
 # Change Log
 
+### 0.2.1 (2020-09-12)
+
+- Added `addWhitespaceAtInterval` function to the string parsers
+
 
 ### 0.2.0 (2020-06-19)
 
