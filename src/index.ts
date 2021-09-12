@@ -10,3 +10,7 @@ export {
     toFixed,
     toFixedFloat
 } from './number_parsers/index'
+
+export {
+    addWhitespaceAtInterval
+} from './string_parsers/index'
