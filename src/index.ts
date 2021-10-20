@@ -14,3 +14,7 @@ export {
 export {
     addWhitespaceAtInterval
 } from './string_parsers/index'
+
+export {
+    objectToXML
+} from './xml_parsers/index'
