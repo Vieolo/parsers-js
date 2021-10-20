@@ -14,6 +14,8 @@ describe("XML Parsers", () => {
         // 4. Has a string array as value
         // 5. Has an object array as value
         // 6. Has a nested Object
+        // 7. With Attribute for an object key
+        // 8. With Attribute for a value key
         let sampleObject = {
             data: {
                 one: "One",
@@ -42,7 +44,28 @@ describe("XML Parsers", () => {
                     },
                     specific: {
                         mainPage: {
-                            background: 'yellow'
+                            background: 'yellow',
+                            color: {
+                                ____: 'black',
+                                ___nature: 'text'
+                            },
+                            value: {
+                                ____: "text value",
+                                ___fontSize: 12,
+                                ___fontWeight: 'bold'
+                            }
+                        }
+                    }
+                },
+                withAttributeInObject: {
+                    ___currency: "EUR",
+                    ___payment: 'SEPA',
+                    amount: 123,
+                    configuration: {
+                        immediate: true,
+                        withAttributeWithValue: {
+                            ____: "some value",
+                            ___attr: "attr value"
                         }
                     }
                 }
@@ -77,11 +100,20 @@ describe("XML Parsers", () => {
                 <specific>
                     <mainPage>
                         <background>yellow</background>
+                        <color nature='text' >black</color>
+                        <value fontSize='12' fontWeight='bold' >text value</value>
                     </mainPage>
                 </specific>
             </preferences>
+            <withAttributeInObject currency='EUR' payment='SEPA' >
+                <amount>123</amount>
+                <configuration>
+                    <immediate>true</immediate>
+                    <withAttributeWithValue attr='attr value' >some value</withAttributeWithValue>
+                </configuration>
+            </withAttributeInObject>
         </data>
-        `.replace(/ /g, "").replace(/[\r\n]+/g, ''))
+        `.replace(/  +/g, "").replace(/[\r\n]+/g, ''))
 
     })
 
