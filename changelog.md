@@ -1,5 +1,9 @@
 # Change Log
 
+### 0.2.2 (2020-10-20)
+
+- Added `objectToXML` function to the xml parsers
+
 ### 0.2.1 (2020-09-12)
 
 - Added `addWhitespaceAtInterval` function to the string parsers
