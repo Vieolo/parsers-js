@@ -1,6 +1,7 @@
 // Parsers
 import {
-    objectToXML
+    objectToXML,
+    formatXML
 } from '../src/index'
 
 
@@ -115,6 +116,293 @@ describe("XML Parsers", () => {
         </data>
         `.replace(/  +/g, "").replace(/[\r\n]+/g, ''))
 
+
+        let realLifeSample = {
+            Document: {
+                ___xmlns___xsi: "http://www.w3.org/2001/XMLSchema-instance",
+                ___xmlns: "urn:iso:std:iso:20022:tech:xsd:pain.001.001.03",
+                "CstmrCdtTrfInitn": {
+                    "GrpHdr": {
+                        "CreDtTm": "2021-10-20T06:34:11.858Z",
+                        "InitgPty": {
+                            "Nm": "Famco"
+                        },
+                        "MsgId": "uituykp",
+                        "NbOfTxs": 3,
+                        "CtrlSum": "1957.33"
+                    },
+                    "PmtInf": [{
+                        "Dbtr": {
+                            "Nm": "Famco Transport"
+                        },
+                        "DbtrAcct": {
+                            "Id": {
+                                "IBAN": "1234523"
+                            }
+                        },
+                        "DbtrAgt": {
+                            "FinInstnId": {
+                                "Othr": {
+                                    "Id": "NOTPROVIDED"
+                                }
+                            }
+                        },
+                        "PmtInfId": "ymof4q7g",
+                        "PmtMtd": "TRF",
+                        "BtchBookg": true,
+                        "PmtTpInf": {
+                            "CtgyPurp": {
+                                "Cd": "SUPP"
+                            },
+                            "SvcLvl": {
+                                "Cd": "SEPA"
+                            }
+                        },
+                        "ReqdExctnDt": "2021-10-31",
+                        "ChrgBr": "SLEV",
+                        "CdtTrfTxInf": [{
+                            "Cdtr": {
+                                "Nm": "Shell Edited"
+                            },
+                            "CdtrAcct": {
+                                "Id": {
+                                    "IBAN": "12345 e"
+                                }
+                            },
+                            "PmtId": {
+                                "EndToEndId": "ymof4q7g/30"
+                            },
+                            "amount": {
+                                "InstdAmt": {
+                                    "____": "600.00",
+                                    "___Ccy": "EUR"
+                                }
+                            },
+                            "RmtInf": {
+                                "Ustrd": null
+                            }
+                        }, {
+                            "Cdtr": {
+                                "Nm": "Shell Edited"
+                            },
+                            "CdtrAcct": {
+                                "Id": {
+                                    "IBAN": "12345 e"
+                                }
+                            },
+                            "PmtId": {
+                                "EndToEndId": "ymof4q7g/59"
+                            },
+                            "amount": {
+                                "InstdAmt": {
+                                    "____": "1234.00",
+                                    "___Ccy": "EUR"
+                                }
+                            },
+                            "RmtInf": {
+                                "Ustrd": null
+                            }
+                        }],
+                        "CtrlSum": "1834.00",
+                        "NbOfTxs": 2
+                    }, {
+                        "Dbtr": {
+                            "Nm": "Famco Transport"
+                        },
+                        "DbtrAcct": {
+                            "Id": {
+                                "IBAN": "1234523"
+                            }
+                        },
+                        "DbtrAgt": {
+                            "FinInstnId": {
+                                "Othr": {
+                                    "Id": "NOTPROVIDED"
+                                }
+                            }
+                        },
+                        "PmtInfId": "ymof4q7g",
+                        "PmtMtd": "TRF",
+                        "BtchBookg": true,
+                        "PmtTpInf": {
+                            "CtgyPurp": {
+                                "Cd": "SUPP"
+                            },
+                            "SvcLvl": {
+                                "Cd": "SEPA"
+                            }
+                        },
+                        "ReqdExctnDt": "2021-10-30",
+                        "ChrgBr": "SLEV",
+                        "CdtTrfTxInf": [{
+                            "Cdtr": {
+                                "Nm": "Shell Edited"
+                            },
+                            "CdtrAcct": {
+                                "Id": {
+                                    "IBAN": "12345 e"
+                                }
+                            },
+                            "PmtId": {
+                                "EndToEndId": "ymof4q7g/55"
+                            },
+                            "amount": {
+                                "InstdAmt": {
+                                    "____": "123.33",
+                                    "___Ccy": "EUR"
+                                }
+                            },
+                            "RmtInf": {
+                                "Ustrd": null
+                            }
+                        }],
+                        "CtrlSum": "123.33",
+                        "NbOfTxs": 1
+                    }]
+                }
+            }
+        }
+
+        let realLifeSampleFormatted = `<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<Document xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns='urn:iso:std:iso:20022:tech:xsd:pain.001.001.03' >
+\t<CstmrCdtTrfInitn>
+\t\t<GrpHdr>
+\t\t\t<CreDtTm>2021-10-20T06:34:11.858Z</CreDtTm>
+\t\t\t<InitgPty>
+\t\t\t\t<Nm>Famco</Nm>
+\t\t\t</InitgPty>
+\t\t\t<MsgId>uituykp</MsgId>
+\t\t\t<NbOfTxs>3</NbOfTxs>
+\t\t\t<CtrlSum>1957.33</CtrlSum>
+\t\t</GrpHdr>
+\t\t<PmtInf>
+\t\t\t<Dbtr>
+\t\t\t\t<Nm>Famco Transport</Nm>
+\t\t\t</Dbtr>
+\t\t\t<DbtrAcct>
+\t\t\t\t<Id>
+\t\t\t\t\t<IBAN>1234523</IBAN>
+\t\t\t\t</Id>
+\t\t\t</DbtrAcct>
+\t\t\t<DbtrAgt>
+\t\t\t\t<FinInstnId>
+\t\t\t\t\t<Othr>
+\t\t\t\t\t\t<Id>NOTPROVIDED</Id>
+\t\t\t\t\t</Othr>
+\t\t\t\t</FinInstnId>
+\t\t\t</DbtrAgt>
+\t\t\t<PmtInfId>ymof4q7g</PmtInfId>
+\t\t\t<PmtMtd>TRF</PmtMtd>
+\t\t\t<BtchBookg>true</BtchBookg>
+\t\t\t<PmtTpInf>
+\t\t\t\t<CtgyPurp>
+\t\t\t\t\t<Cd>SUPP</Cd>
+\t\t\t\t</CtgyPurp>
+\t\t\t\t<SvcLvl>
+\t\t\t\t\t<Cd>SEPA</Cd>
+\t\t\t\t</SvcLvl>
+\t\t\t</PmtTpInf>
+\t\t\t<ReqdExctnDt>2021-10-31</ReqdExctnDt>
+\t\t\t<ChrgBr>SLEV</ChrgBr>
+\t\t\t<CdtTrfTxInf>
+\t\t\t\t<Cdtr>
+\t\t\t\t\t<Nm>Shell Edited</Nm>
+\t\t\t\t</Cdtr>
+\t\t\t\t<CdtrAcct>
+\t\t\t\t\t<Id>
+\t\t\t\t\t\t<IBAN>12345 e</IBAN>
+\t\t\t\t\t</Id>
+\t\t\t\t</CdtrAcct>
+\t\t\t\t<PmtId>
+\t\t\t\t\t<EndToEndId>ymof4q7g/30</EndToEndId>
+\t\t\t\t</PmtId>
+\t\t\t\t<amount>
+\t\t\t\t\t<InstdAmt Ccy='EUR' >600.00</InstdAmt>
+\t\t\t\t</amount>
+\t\t\t\t<RmtInf>
+\t\t\t\t\t<Ustrd></Ustrd>
+\t\t\t\t</RmtInf>
+\t\t\t</CdtTrfTxInf>
+\t\t\t<CdtTrfTxInf>
+\t\t\t\t<Cdtr>
+\t\t\t\t\t<Nm>Shell Edited</Nm>
+\t\t\t\t</Cdtr>
+\t\t\t\t<CdtrAcct>
+\t\t\t\t\t<Id>
+\t\t\t\t\t\t<IBAN>12345 e</IBAN>
+\t\t\t\t\t</Id>
+\t\t\t\t</CdtrAcct>
+\t\t\t\t<PmtId>
+\t\t\t\t\t<EndToEndId>ymof4q7g/59</EndToEndId>
+\t\t\t\t</PmtId>
+\t\t\t\t<amount>
+\t\t\t\t\t<InstdAmt Ccy='EUR' >1234.00</InstdAmt>
+\t\t\t\t</amount>
+\t\t\t\t<RmtInf>
+\t\t\t\t\t<Ustrd></Ustrd>
+\t\t\t\t</RmtInf>
+\t\t\t</CdtTrfTxInf>
+\t\t\t<CtrlSum>1834.00</CtrlSum>
+\t\t\t<NbOfTxs>2</NbOfTxs>
+\t\t</PmtInf>
+\t\t<PmtInf>
+\t\t\t<Dbtr>
+\t\t\t\t<Nm>Famco Transport</Nm>
+\t\t\t</Dbtr>
+\t\t\t<DbtrAcct>
+\t\t\t\t<Id>
+\t\t\t\t\t<IBAN>1234523</IBAN>
+\t\t\t\t</Id>
+\t\t\t</DbtrAcct>
+\t\t\t<DbtrAgt>
+\t\t\t\t<FinInstnId>
+\t\t\t\t\t<Othr>
+\t\t\t\t\t\t<Id>NOTPROVIDED</Id>
+\t\t\t\t\t</Othr>
+\t\t\t\t</FinInstnId>
+\t\t\t</DbtrAgt>
+\t\t\t<PmtInfId>ymof4q7g</PmtInfId>
+\t\t\t<PmtMtd>TRF</PmtMtd>
+\t\t\t<BtchBookg>true</BtchBookg>
+\t\t\t<PmtTpInf>
+\t\t\t\t<CtgyPurp>
+\t\t\t\t\t<Cd>SUPP</Cd>
+\t\t\t\t</CtgyPurp>
+\t\t\t\t<SvcLvl>
+\t\t\t\t\t<Cd>SEPA</Cd>
+\t\t\t\t</SvcLvl>
+\t\t\t</PmtTpInf>
+\t\t\t<ReqdExctnDt>2021-10-30</ReqdExctnDt>
+\t\t\t<ChrgBr>SLEV</ChrgBr>
+\t\t\t<CdtTrfTxInf>
+\t\t\t\t<Cdtr>
+\t\t\t\t\t<Nm>Shell Edited</Nm>
+\t\t\t\t</Cdtr>
+\t\t\t\t<CdtrAcct>
+\t\t\t\t\t<Id>
+\t\t\t\t\t\t<IBAN>12345 e</IBAN>
+\t\t\t\t\t</Id>
+\t\t\t\t</CdtrAcct>
+\t\t\t\t<PmtId>
+\t\t\t\t\t<EndToEndId>ymof4q7g/55</EndToEndId>
+\t\t\t\t</PmtId>
+\t\t\t\t<amount>
+\t\t\t\t\t<InstdAmt Ccy='EUR' >123.33</InstdAmt>
+\t\t\t\t</amount>
+\t\t\t\t<RmtInf>
+\t\t\t\t\t<Ustrd></Ustrd>
+\t\t\t\t</RmtInf>
+\t\t\t</CdtTrfTxInf>
+\t\t\t<CtrlSum>123.33</CtrlSum>
+\t\t\t<NbOfTxs>1</NbOfTxs>
+\t\t</PmtInf>
+\t</CstmrCdtTrfInitn>
+</Document>
+`
+
+        expect(objectToXML(realLifeSample)).toBe(`${realLifeSampleFormatted}`.substring(55).replace(/\t/g, '  ').replace(/  +/g, "").replace(/[\r\n]+/g, ''))
+        expect(`<?xml version="1.0" encoding="utf-8" standalone="yes"?>\n${objectToXML(realLifeSample, true)}`).toBe(realLifeSampleFormatted);
+        expect(formatXML(`<?xml version="1.0" encoding="utf-8" standalone="yes"?>${objectToXML(realLifeSample, false)}`)).toBe(realLifeSampleFormatted);
     })
 
 })
