@@ -9,9 +9,23 @@
  *      regularKey: 123,
  *      ___attr: "attribute value"
  * }
- * // <parent attr='attribute value' >
- * //       <regularKey>123</regularKey>
- * // </parent>
+ * ```
+ * becomes:
+ * ```xml
+ * <parent attr='attribute value' >
+ *      <regularKey>123</regularKey>
+ * </parent>
+ * ```
+ *
+ * If the attribute contains `:`, for example, `xmlns:xsi`, replace the `:` with `___` (3 underscore)
+ * ```js
+ * Document: {
+ *      ___xmlns___xsi: "http://www.w3.org/2001/XMLSchema-instance",
+ * }
+ * ```
+ * becomes:
+ * ```xml
+ * <Document xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' ><Document>
  * ```
  *
  * second, If the value of the object key is a regular value (string, number, and boolean), pass an object with the tag value having the key of `____` (4 underscore) and attributes having `___` (3 underscore) at the beginning
@@ -21,20 +35,27 @@
  *      ___fontSize: 12,
  *      ___fontWeight: 'bold'
  * }
- * // <value fontSize='12' fontWeight='bold' >text value</value>
+ * ```
+ * becomes:
+ * ```xml
+ * <value fontSize='12' fontWeight='bold' >text value</value>
  * ```
  *
  * @param obj A Javascript object
+ * @param format Whether to format the generated XML content or not (defaults to: `false`)
  * @returns The XML representation of the object in string format
  */
-export function objectToXML(obj) {
+export function objectToXML(obj, format) {
     function getAttributes(openingKey) {
         let attributes = {};
+        if (obj[openingKey] === null || obj[openingKey] === undefined) {
+            return attributes;
+        }
         // Getting the attribute keys and values
         for (let i = 0; i < Object.keys(obj[openingKey]).length; i++) {
             const key = Object.keys(obj[openingKey])[i];
             if (key !== '____' && key.substr(0, 3) === '___') {
-                attributes[key.substr(3)] = obj[openingKey][key];
+                attributes[key.substr(3).replace('___', ':')] = obj[openingKey][key];
             }
         }
         return attributes;
@@ -59,6 +80,9 @@ export function objectToXML(obj) {
     function hasToBeFlat(openingKey) {
         let hasAttr = false;
         let hasValueIndicator = false;
+        if (obj[openingKey] === null || obj[openingKey] === undefined) {
+            return false;
+        }
         for (let i = 0; i < Object.keys(obj[openingKey]).length; i++) {
             const key = Object.keys(obj[openingKey])[i];
             if (key === '____')
@@ -107,5 +131,57 @@ export function objectToXML(obj) {
             xml += `</${prop}>`;
     }
     var xml = xml.replace(/<\/?[0-9]{1,}>/g, '');
-    return xml;
+    return format ? formatXML(xml) : xml;
+}
+/**
+ * Takes the valid but unformatted XML content in the string format and adds the necessary formatting to it.
+ * So the input of:
+ * ```xml
+ * <Parent><Child>Value</Child></Parent>
+ * ```
+ * becomes:
+ * ```xml
+ * <Parent>
+ *      <Child>Value</Child>
+ * </Parent>
+ * ```
+ * @param input The valid but unformatted XML in the string format
+ * @param indent The indent used to format the XML content (defaults to: tabs `\t`)
+ */
+export function formatXML(input, indent) {
+    indent = indent || '\t';
+    //PART 1: Add \n where necessary
+    let xmlString = input
+        .trim()
+        .replace(/(<([a-zA-Z]+\b)[^>]*>)(?!<\/\2>|[\w\s])/g, "$1\n") //add \n after tag if not followed by the closing tag of pair or text node
+        .replace(/(<\/[a-zA-Z]+[^>]*>)/g, "$1\n") //add \n after closing tag
+        .replace(/>\s+(.+?)\s+<(?!\/)/g, ">\n$1\n<") //add \n between sets of angled brackets and text node between them
+        .replace(/>(.+?)<([a-zA-Z])/g, ">\n$1\n<$2") //add \n between angled brackets and text node between them
+        .replace(/\?></, "?>\n<"); //detect a header of XML
+    let xmlArr = xmlString.split('\n'); //split it into an array (for analise each line separately)
+    //PART 2: indent each line appropriately
+    var tabs = ''; //store the current indentation
+    var start = 0; //starting line
+    if (/^<[?]xml/.test(xmlArr[0]))
+        start++; //if the first line is a header, ignore it
+    for (var i = start; i < xmlArr.length; i++) {
+        var line = xmlArr[i].replace(/^\s+|\s+$/g, ''); //trim it (just in case)
+        if (/^<[/]/.test(line)) { //if the line is a closing tag        
+            tabs = tabs.replace(indent, ''); //remove one indent from the store
+            xmlArr[i] = tabs + line; //add the tabs at the beginning of the line
+        }
+        else if (/<.*>.*<\/.*>|<.*[^>]\/>/.test(line)) { //if the line contains an entire node        
+            //leave the store as is
+            xmlArr[i] = tabs + line; //add the tabs at the beginning of the line
+        }
+        else if (/<.*>/.test(line)) { //if the line starts with an opening tag and does not contain an entire node        
+            xmlArr[i] = tabs + line; //add the tabs at the beginning of the line
+            tabs += indent; //and add one indent to the store
+        }
+        else { //if the line contain a text node        
+            xmlArr[i] = tabs + line; // add the tabs at the beginning of the line
+        }
+    }
+    //PART 3: return formatted string (source)
+    return xmlArr.join('\n'); //rejoin the array to a string and return it
 }

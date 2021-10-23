@@ -1,3 +1,4 @@
 export {
-    objectToXML
+    objectToXML,
+    formatXML
 } from './xml_parsers';

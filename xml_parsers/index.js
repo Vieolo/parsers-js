@@ -1,1 +1,1 @@
-export { objectToXML } from './xml_parsers';
+export { objectToXML, formatXML } from './xml_parsers';
