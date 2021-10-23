@@ -115,6 +115,283 @@ describe("XML Parsers", () => {
         </data>
         `.replace(/  +/g, "").replace(/[\r\n]+/g, ''))
 
+
+        let realLifeSample = {
+            "CstmrCdtTrfInitn": {
+                "GrpHdr": {
+                    "CreDtTm": "2021-10-20T06:34:11.858Z",
+                    "InitgPty": {
+                        "Nm": "Famco"
+                    },
+                    "MsgId": "uituykp",
+                    "NbOfTxs": 3,
+                    "CtrlSum": "1957.33"
+                },
+                "PmtInf": [{
+                    "Dbtr": {
+                        "Nm": "Famco Transport"
+                    },
+                    "DbtrAcct": {
+                        "Id": {
+                            "IBAN": "1234523"
+                        }
+                    },
+                    "DbtrAgt": {
+                        "FinInstnId": {
+                            "Othr": {
+                                "Id": "NOTPROVIDED"
+                            }
+                        }
+                    },
+                    "PmtInfId": "ymof4q7g",
+                    "PmtMtd": "TRF",
+                    "BtchBookg": true,
+                    "PmtTpInf": {
+                        "CtgyPurp": {
+                            "Cd": "SUPP"
+                        },
+                        "SvcLvl": {
+                            "Cd": "SEPA"
+                        }
+                    },
+                    "ReqdExctnDt": "2021-10-31",
+                    "ChrgBr": "SLEV",
+                    "CdtTrfTxInf": [{
+                        "Cdtr": {
+                            "Nm": "Shell Edited"
+                        },
+                        "CdtrAcct": {
+                            "Id": {
+                                "IBAN": "12345 e"
+                            }
+                        },
+                        "PmtId": {
+                            "EndToEndId": "ymof4q7g/30"
+                        },
+                        "amount": {
+                            "InstdAmt": {
+                                "____": "600.00",
+                                "___Ccy": "EUR"
+                            }
+                        },
+                        "RmtInf": {
+                            "Ustrd": null
+                        }
+                    }, {
+                        "Cdtr": {
+                            "Nm": "Shell Edited"
+                        },
+                        "CdtrAcct": {
+                            "Id": {
+                                "IBAN": "12345 e"
+                            }
+                        },
+                        "PmtId": {
+                            "EndToEndId": "ymof4q7g/59"
+                        },
+                        "amount": {
+                            "InstdAmt": {
+                                "____": "1234.00",
+                                "___Ccy": "EUR"
+                            }
+                        },
+                        "RmtInf": {
+                            "Ustrd": null
+                        }
+                    }],
+                    "CtrlSum": "1834.00",
+                    "NbOfTxs": 2
+                }, {
+                    "Dbtr": {
+                        "Nm": "Famco Transport"
+                    },
+                    "DbtrAcct": {
+                        "Id": {
+                            "IBAN": "1234523"
+                        }
+                    },
+                    "DbtrAgt": {
+                        "FinInstnId": {
+                            "Othr": {
+                                "Id": "NOTPROVIDED"
+                            }
+                        }
+                    },
+                    "PmtInfId": "ymof4q7g",
+                    "PmtMtd": "TRF",
+                    "BtchBookg": true,
+                    "PmtTpInf": {
+                        "CtgyPurp": {
+                            "Cd": "SUPP"
+                        },
+                        "SvcLvl": {
+                            "Cd": "SEPA"
+                        }
+                    },
+                    "ReqdExctnDt": "2021-10-30",
+                    "ChrgBr": "SLEV",
+                    "CdtTrfTxInf": [{
+                        "Cdtr": {
+                            "Nm": "Shell Edited"
+                        },
+                        "CdtrAcct": {
+                            "Id": {
+                                "IBAN": "12345 e"
+                            }
+                        },
+                        "PmtId": {
+                            "EndToEndId": "ymof4q7g/55"
+                        },
+                        "amount": {
+                            "InstdAmt": {
+                                "____": "123.33",
+                                "___Ccy": "EUR"
+                            }
+                        },
+                        "RmtInf": {
+                            "Ustrd": null
+                        }
+                    }],
+                    "CtrlSum": "123.33",
+                    "NbOfTxs": 1
+                }]
+            }
+        }
+
+        expect(objectToXML(realLifeSample)).toBe(`
+        <CstmrCdtTrfInitn>
+            <GrpHdr>
+                <CreDtTm>2021-10-20T06:34:11.858Z</CreDtTm>
+                <InitgPty>
+                    <Nm>Famco</Nm>
+                </InitgPty>
+                <MsgId>uituykp</MsgId>
+                <NbOfTxs>3</NbOfTxs>
+                <CtrlSum>1957.33</CtrlSum>
+            </GrpHdr>
+            <PmtInf>
+                <Dbtr>
+                    <Nm>Famco Transport</Nm>
+                </Dbtr>
+                <DbtrAcct>
+                    <Id>
+                        <IBAN>1234523</IBAN>
+                    </Id>
+                </DbtrAcct>
+                <DbtrAgt>
+                    <FinInstnId>
+                        <Othr>
+                            <Id>NOTPROVIDED</Id>
+                        </Othr>
+                    </FinInstnId>
+                </DbtrAgt>
+                <PmtInfId>ymof4q7g</PmtInfId>
+                <PmtMtd>TRF</PmtMtd>
+                <BtchBookg>true</BtchBookg>
+                <PmtTpInf>
+                    <CtgyPurp>
+                        <Cd>SUPP</Cd>
+                    </CtgyPurp>
+                    <SvcLvl>
+                        <Cd>SEPA</Cd>
+                    </SvcLvl>
+                </PmtTpInf>
+                <ReqdExctnDt>2021-10-31</ReqdExctnDt>
+                <ChrgBr>SLEV</ChrgBr>
+                <CdtTrfTxInf>
+                    <Cdtr>
+                        <Nm>Shell Edited</Nm>
+                    </Cdtr>
+                    <CdtrAcct>
+                        <Id>
+                            <IBAN>12345 e</IBAN>
+                        </Id>
+                    </CdtrAcct>
+                    <PmtId>
+                        <EndToEndId>ymof4q7g/30</EndToEndId>
+                    </PmtId>
+                    <amount>
+                        <InstdAmt Ccy='EUR' >600.00</InstdAmt>
+                    </amount>
+                    <RmtInf>
+                        <Ustrd></Ustrd>
+                    </RmtInf>
+                </CdtTrfTxInf>
+                <CdtTrfTxInf>
+                    <Cdtr>
+                        <Nm>Shell Edited</Nm>
+                    </Cdtr>
+                    <CdtrAcct>
+                        <Id>
+                            <IBAN>12345 e</IBAN>
+                        </Id>
+                    </CdtrAcct>
+                    <PmtId>
+                        <EndToEndId>ymof4q7g/59</EndToEndId>
+                    </PmtId>
+                    <amount>
+                        <InstdAmt Ccy='EUR' >1234.00</InstdAmt>
+                    </amount>
+                    <RmtInf>
+                        <Ustrd></Ustrd>
+                    </RmtInf>
+                </CdtTrfTxInf>
+                <CtrlSum>1834.00</CtrlSum>
+                <NbOfTxs>2</NbOfTxs>
+            </PmtInf>
+            <PmtInf>
+                <Dbtr>
+                    <Nm>Famco Transport</Nm>
+                </Dbtr>
+                <DbtrAcct>
+                    <Id>
+                        <IBAN>1234523</IBAN>
+                    </Id>
+                </DbtrAcct>
+                <DbtrAgt>
+                    <FinInstnId>
+                        <Othr>
+                            <Id>NOTPROVIDED</Id>
+                        </Othr>
+                    </FinInstnId>
+                </DbtrAgt>
+                <PmtInfId>ymof4q7g</PmtInfId>
+                <PmtMtd>TRF</PmtMtd>
+                <BtchBookg>true</BtchBookg>
+                <PmtTpInf>
+                    <CtgyPurp>
+                        <Cd>SUPP</Cd>
+                    </CtgyPurp>
+                    <SvcLvl>
+                        <Cd>SEPA</Cd>
+                    </SvcLvl>
+                </PmtTpInf>
+                <ReqdExctnDt>2021-10-30</ReqdExctnDt>
+                <ChrgBr>SLEV</ChrgBr>
+                <CdtTrfTxInf>
+                    <Cdtr>
+                        <Nm>Shell Edited</Nm>
+                    </Cdtr>
+                    <CdtrAcct>
+                        <Id>
+                            <IBAN>12345 e</IBAN>
+                        </Id>
+                    </CdtrAcct>
+                    <PmtId>
+                        <EndToEndId>ymof4q7g/55</EndToEndId>
+                    </PmtId>
+                    <amount>
+                        <InstdAmt Ccy='EUR' >123.33</InstdAmt>
+                    </amount>
+                    <RmtInf>
+                        <Ustrd></Ustrd>
+                    </RmtInf>
+                </CdtTrfTxInf>
+                <CtrlSum>123.33</CtrlSum>
+                <NbOfTxs>1</NbOfTxs>
+            </PmtInf>
+        </CstmrCdtTrfInitn>
+        `.replace(/  +/g, "").replace(/[\r\n]+/g, ''))
     })
 
 })

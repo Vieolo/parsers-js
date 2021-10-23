@@ -31,6 +31,11 @@ export function objectToXML(obj: any): string {
 
     function getAttributes(openingKey: string): { [key: string]: string } {
         let attributes: { [key: string]: string } = {}
+
+        if (obj[openingKey] === null || obj[openingKey] === undefined) {
+            return attributes;
+        }
+
         // Getting the attribute keys and values
         for (let i = 0; i < Object.keys(obj[openingKey]).length; i++) {
             const key = Object.keys(obj[openingKey])[i];
@@ -63,6 +68,9 @@ export function objectToXML(obj: any): string {
     function hasToBeFlat(openingKey: string) {
         let hasAttr = false;
         let hasValueIndicator = false;
+        if (obj[openingKey] === null || obj[openingKey] === undefined) {
+            return false;
+        }
         for (let i = 0; i < Object.keys(obj[openingKey]).length; i++) {
             const key = Object.keys(obj[openingKey])[i];
             if (key === '____') hasValueIndicator = true
