@@ -16,5 +16,6 @@ export {
 } from './string_parsers/index'
 
 export {
-    objectToXML
+    objectToXML,
+    formatXML
 } from './xml_parsers/index'
