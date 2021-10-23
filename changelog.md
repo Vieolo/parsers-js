@@ -1,5 +1,11 @@
 # Change Log
 
+### 0.2.3 (2020-10-23)
+
+- Added `formatXML` function to the xml parsers
+- Fixed the handling of `null` values in `objectToXML`
+- Added support for attributes with `:` in `objectToXML`
+
 ### 0.2.2 (2020-10-20)
 
 - Added `objectToXML` function to the xml parsers
