@@ -2,9 +2,13 @@
  * Same as toFixed but rounds up if the third decimal place is 5
  * @param original The original float
  * @param n The number of decimal places
+ * @param trim Whether the trailing zeros should be removed or not (defaults to false)
  */
-export function toFixed(original: number, n: number) : string {
-	return (+(Math.round(+(original + 'e' + n)) + 'e' + -n)).toFixed(n);
+export function toFixed(original: number, n: number, trim?: boolean) : string {
+	let v = (+(Math.round(+(original + 'e' + n)) + 'e' + -n)).toFixed(n);
+	if (!trim) return v; 
+	
+	return v.replace(/0+$/,'').replace(/\.$/, "");
 }
 
 /**
