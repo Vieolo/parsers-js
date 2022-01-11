@@ -4,7 +4,8 @@
   "description": "The Parser functions",
   "main": "index.js",
   "scripts": {
-    "test": "jest --runInBand"
+    "test": "jest --runInBand",
+    "build": "npx tsc"
   },
   "repository": {
     "type": "git",
