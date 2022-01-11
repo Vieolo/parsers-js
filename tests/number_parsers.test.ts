@@ -23,6 +23,30 @@ describe("Number Parsers", () => {
         expect(parseInputFloatToSafeString("20")).toBe("2000");
         expect(parseInputFloatToSafeString("20.")).toBe("2000");
         expect(parseInputFloatToSafeString("20.132")).toBe("2013");
+
+        expect(parseInputFloatToSafeString("20.13", 0)).toBe("20");
+        expect(parseInputFloatToSafeString("20.1", 0)).toBe("20");
+        expect(parseInputFloatToSafeString("20", 0)).toBe("20");
+        expect(parseInputFloatToSafeString("20.", 0)).toBe("20");
+        expect(parseInputFloatToSafeString("20.132", 0)).toBe("20");
+
+        expect(parseInputFloatToSafeString("20.13", 1)).toBe("201");
+        expect(parseInputFloatToSafeString("20.1", 1)).toBe("201");
+        expect(parseInputFloatToSafeString("20", 1)).toBe("200");
+        expect(parseInputFloatToSafeString("20.", 1)).toBe("200");
+        expect(parseInputFloatToSafeString("20.132", 1)).toBe("201");
+
+        expect(parseInputFloatToSafeString("20.13", 3)).toBe("20130");
+        expect(parseInputFloatToSafeString("20.1", 3)).toBe("20100");
+        expect(parseInputFloatToSafeString("20", 3)).toBe("20000");
+        expect(parseInputFloatToSafeString("20.", 3)).toBe("20000");
+        expect(parseInputFloatToSafeString("20.132", 3)).toBe("20132");
+
+        expect(parseInputFloatToSafeString("20.13", 4)).toBe("201300");
+        expect(parseInputFloatToSafeString("20.1", 4)).toBe("201000");
+        expect(parseInputFloatToSafeString("20", 4)).toBe("200000");
+        expect(parseInputFloatToSafeString("20.", 4)).toBe("200000");
+        expect(parseInputFloatToSafeString("20.132", 4)).toBe("201320");
     })
 
 })
