@@ -773,6 +773,28 @@ describe("Time Parsers", () => {
         //#endregion
 
 
+        //#region to integer-string
+
+        expect(parseMinuteCount(126, 'integer-string')).toBe("210");
+        expect(parseMinuteCount(0, 'integer-string')).toBe("0");
+        expect(parseMinuteCount(1, 'integer-string')).toBe("2");
+        expect(parseMinuteCount(60, 'integer-string')).toBe("100");
+        expect(parseMinuteCount(76, 'integer-string')).toBe("127");
+
+        //#endregion
+
+
+        //#region to integer-number
+
+        expect(parseMinuteCount(126, 'integer-number')).toBe(210);
+        expect(parseMinuteCount(0, 'integer-number')).toBe(0);
+        expect(parseMinuteCount(1, 'integer-number')).toBe(2);
+        expect(parseMinuteCount(60, 'integer-number')).toBe(100);
+        expect(parseMinuteCount(76, 'integer-number')).toBe(127);
+
+        //#endregion
+
+
 
         //#region to formatted-hour-minute
 
