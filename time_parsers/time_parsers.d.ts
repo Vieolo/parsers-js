@@ -5,11 +5,17 @@ export declare function parseHourAndMinute(hour: number, minute: number, returnT
 export declare function parseHourAndMinute(hour: number, minute: number, returnType?: 'vdate'): VDate;
 export declare function parseHourAndMinute(hour: number, minute: number, returnType?: 'decimal-float'): number;
 export declare function parseHourAndMinute(hour: number, minute: number, returnType?: 'decimal-string'): string;
+export declare function parseHourAndMinute(hour: number, minute: number, returnType?: 'integer-number'): number;
+export declare function parseHourAndMinute(hour: number, minute: number, returnType?: 'integer-string'): string;
 export declare function parseDecimalTime(decimal: number, includeSecond?: boolean): string;
 /** parses 126 to 2.10 (string) */
 export declare function parseMinuteCount(count: number, returnType: 'decimal-string'): string;
 /** parses 126 to 2.10 (number) */
 export declare function parseMinuteCount(count: number, returnType: 'decimal-number'): number;
+/** parses 126 to 210 (string) */
+export declare function parseMinuteCount(count: number, returnType: 'integer-string'): string;
+/** parses 126 to 210 (number) */
+export declare function parseMinuteCount(count: number, returnType: 'integer-number'): number;
 /** parses 126 to 2h 6m */
 export declare function parseMinuteCount(count: number, returnType: 'formatted-hour-minute'): string;
 /** parses 126 to 02:06 */
