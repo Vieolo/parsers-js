@@ -18,6 +18,12 @@ export function parseHourAndMinute(hour, minute, returnType) {
     else if (returnType == 'decimal-string') {
         return toFixed(((hour * 60) + minute) / 60, 2);
     }
+    else if (returnType == 'integer-number') {
+        return +toFixed(((hour * 60) + minute) / 60, 2).replace(".", "");
+    }
+    else if (returnType == 'integer-string') {
+        return toFixed((((hour * 60) + minute) * 100) / 60, 0);
+    }
     let sHour = hour < 10 ? `0${toFixed(hour, 0)}` : `${toFixed(hour, 0)}`;
     let sMinute = minute < 10 ? `0${toFixed(minute, 0)}` : `${toFixed(minute, 0)}`;
     return `${sHour}:${sMinute}`;
@@ -49,6 +55,10 @@ export function parseMinuteCount(count, returnType) {
         return toFixedFloat(count / 60, 2);
     else if (returnType == 'decimal-string')
         return toFixed(count / 60, 2);
+    else if (returnType == 'integer-string')
+        return toFixed((count / 60) * 100, 0);
+    else if (returnType == 'integer-number')
+        return +toFixed(count / 60, 2).replace(".", "");
     else if (returnType == 'formatted-hour-minute')
         return VDate.getTimeFromMinuteCount(count);
     let hourCount = Math.floor(count / 60);

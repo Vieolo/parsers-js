@@ -1,5 +1,8 @@
 # Change Log
 
+## 0.2.5 (2022-05-06)
+- Added integer to `parseMinuteCount` and `parseHourAndMinute`
+
 ## 0.2.4 (2022-01-12)
 - Added the ability to remove trailing zeros in `toFixed`
 - Added the ability to change the decimal places of `parseInputFloatToSafeString`
