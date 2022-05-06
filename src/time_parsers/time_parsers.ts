@@ -11,7 +11,9 @@ export function parseHourAndMinute(hour: number, minute: number, returnType?: 'd
 export function parseHourAndMinute(hour: number, minute: number, returnType?: 'vdate') : VDate;
 export function parseHourAndMinute(hour: number, minute: number, returnType?: 'decimal-float') : number;
 export function parseHourAndMinute(hour: number, minute: number, returnType?: 'decimal-string') : string;
-export function parseHourAndMinute(hour: number, minute: number, returnType?: 'string' | 'date' | 'decimal-float' | 'decimal-string' | 'vdate') : any {
+export function parseHourAndMinute(hour: number, minute: number, returnType?: 'integer-number') : number;
+export function parseHourAndMinute(hour: number, minute: number, returnType?: 'integer-string') : string;
+export function parseHourAndMinute(hour: number, minute: number, returnType?: 'string' | 'date' | 'decimal-float' | 'decimal-string' | 'vdate' | 'integer-number' | 'integer-string') : any {
 	if (returnType && returnType == 'date') {
 		let now = new Date();
 		return new Date(now.getFullYear(), now.getMonth(), now.getDate(), hour, minute);
@@ -22,6 +24,10 @@ export function parseHourAndMinute(hour: number, minute: number, returnType?: 's
         return toFixedFloat( ((hour * 60) + minute) / 60, 2 );
     }else if (returnType == 'decimal-string') {
         return toFixed( ((hour * 60) + minute) / 60, 2 );
+    }else if (returnType == 'integer-number') {
+        return +toFixed( ((hour * 60) + minute) / 60, 2 ).replace(".", "");
+    }else if (returnType == 'integer-string') {
+        return toFixed( (((hour * 60) + minute) * 100) / 60, 0 );
     }
 
 	let sHour = hour < 10 ? `0${toFixed(hour, 0)}` : `${toFixed(hour, 0)}`;
