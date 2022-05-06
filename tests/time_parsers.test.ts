@@ -550,6 +550,163 @@ describe("Time Parsers", () => {
 
         //#endregion
 
+
+
+
+        //#region to integer-string
+
+        expect(parseHourAndMinute(_0[0], _0[1], "integer-string")).toBe("2000");
+        expect(parseHourAndMinute(_1[0], _1[1], "integer-string")).toBe("2002");
+        expect(parseHourAndMinute(_2[0], _2[1], "integer-string")).toBe("2003");
+        expect(parseHourAndMinute(_3[0], _3[1], "integer-string")).toBe("2005");
+        expect(parseHourAndMinute(_4[0], _4[1], "integer-string")).toBe("2007");
+        expect(parseHourAndMinute(_5[0], _5[1], "integer-string")).toBe("2008");
+        expect(parseHourAndMinute(_6[0], _6[1], "integer-string")).toBe("2010");
+        expect(parseHourAndMinute(_7[0], _7[1], "integer-string")).toBe("2012");
+        expect(parseHourAndMinute(_8[0], _8[1], "integer-string")).toBe("2013");
+        expect(parseHourAndMinute(_9[0], _9[1], "integer-string")).toBe("2015");
+        expect(parseHourAndMinute(_10[0], _10[1], "integer-string")).toBe("2017");
+        expect(parseHourAndMinute(_11[0], _11[1], "integer-string")).toBe("2018");
+        expect(parseHourAndMinute(_12[0], _12[1], "integer-string")).toBe("2020");
+        expect(parseHourAndMinute(_13[0], _13[1], "integer-string")).toBe("2022");
+        expect(parseHourAndMinute(_14[0], _14[1], "integer-string")).toBe("2023");
+        expect(parseHourAndMinute(_15[0], _15[1], "integer-string")).toBe("2025");
+        expect(parseHourAndMinute(_16[0], _16[1], "integer-string")).toBe("2027");
+        expect(parseHourAndMinute(_17[0], _17[1], "integer-string")).toBe("2028");
+        expect(parseHourAndMinute(_18[0], _18[1], "integer-string")).toBe("2030");
+        expect(parseHourAndMinute(_19[0], _19[1], "integer-string")).toBe("2032");
+        expect(parseHourAndMinute(_20[0], _20[1], "integer-string")).toBe("2033");
+        expect(parseHourAndMinute(_21[0], _21[1], "integer-string")).toBe("2035");
+        expect(parseHourAndMinute(_22[0], _22[1], "integer-string")).toBe("2037");
+        expect(parseHourAndMinute(_23[0], _23[1], "integer-string")).toBe("2038");
+        expect(parseHourAndMinute(_24[0], _24[1], "integer-string")).toBe("2040");
+        expect(parseHourAndMinute(_25[0], _25[1], "integer-string")).toBe("2042");
+        expect(parseHourAndMinute(_26[0], _26[1], "integer-string")).toBe("2043");
+        expect(parseHourAndMinute(_27[0], _27[1], "integer-string")).toBe("2045");
+        expect(parseHourAndMinute(_28[0], _28[1], "integer-string")).toBe("2047");
+        expect(parseHourAndMinute(_29[0], _29[1], "integer-string")).toBe("2048");
+        expect(parseHourAndMinute(_30[0], _30[1], "integer-string")).toBe("2050");
+        expect(parseHourAndMinute(_31[0], _31[1], "integer-string")).toBe("2052");
+        expect(parseHourAndMinute(_32[0], _32[1], "integer-string")).toBe("2053");
+        expect(parseHourAndMinute(_33[0], _33[1], "integer-string")).toBe("2055");
+        expect(parseHourAndMinute(_34[0], _34[1], "integer-string")).toBe("2057");
+        expect(parseHourAndMinute(_35[0], _35[1], "integer-string")).toBe("2058");
+        expect(parseHourAndMinute(_36[0], _36[1], "integer-string")).toBe("2060");
+        expect(parseHourAndMinute(_37[0], _37[1], "integer-string")).toBe("2062");
+        expect(parseHourAndMinute(_38[0], _38[1], "integer-string")).toBe("2063");
+        expect(parseHourAndMinute(_39[0], _39[1], "integer-string")).toBe("2065");
+        expect(parseHourAndMinute(_40[0], _40[1], "integer-string")).toBe("2067");
+        expect(parseHourAndMinute(_41[0], _41[1], "integer-string")).toBe("2068");
+        expect(parseHourAndMinute(_42[0], _42[1], "integer-string")).toBe("2070");
+        expect(parseHourAndMinute(_43[0], _43[1], "integer-string")).toBe("2072");
+        expect(parseHourAndMinute(_44[0], _44[1], "integer-string")).toBe("2073");
+        expect(parseHourAndMinute(_45[0], _45[1], "integer-string")).toBe("2075");
+        expect(parseHourAndMinute(_46[0], _46[1], "integer-string")).toBe("2077");
+        expect(parseHourAndMinute(_47[0], _47[1], "integer-string")).toBe("2078");
+        expect(parseHourAndMinute(_48[0], _48[1], "integer-string")).toBe("2080");
+        expect(parseHourAndMinute(_49[0], _49[1], "integer-string")).toBe("2082");
+        expect(parseHourAndMinute(_50[0], _50[1], "integer-string")).toBe("2083");
+        expect(parseHourAndMinute(_51[0], _51[1], "integer-string")).toBe("2085");
+        expect(parseHourAndMinute(_52[0], _52[1], "integer-string")).toBe("2087");
+        expect(parseHourAndMinute(_53[0], _53[1], "integer-string")).toBe("2088");
+        expect(parseHourAndMinute(_54[0], _54[1], "integer-string")).toBe("2090");
+        expect(parseHourAndMinute(_55[0], _55[1], "integer-string")).toBe("2092");
+        expect(parseHourAndMinute(_56[0], _56[1], "integer-string")).toBe("2093");
+        expect(parseHourAndMinute(_57[0], _57[1], "integer-string")).toBe("2095");
+        expect(parseHourAndMinute(_58[0], _58[1], "integer-string")).toBe("2097");
+        expect(parseHourAndMinute(_59[0], _59[1], "integer-string")).toBe("2098");
+
+        expect(parseHourAndMinute(8, 5, "integer-string")).toBe("808");
+        expect(parseHourAndMinute(2, 26, "integer-string")).toBe("243");
+        expect(parseHourAndMinute(4, 55, "integer-string")).toBe("492");
+        expect(parseHourAndMinute(3, 20, "integer-string")).toBe("333");
+        expect(parseHourAndMinute(11, 34, "integer-string")).toBe("1157");
+        expect(parseHourAndMinute(6, 40, "integer-string")).toBe("667");
+        expect(parseHourAndMinute(9, 13, "integer-string")).toBe("922");
+        expect(parseHourAndMinute(4, 25, "integer-string")).toBe("442");
+        expect(parseHourAndMinute(3, 58, "integer-string")).toBe("397");
+        expect(parseHourAndMinute(2, 42, "integer-string")).toBe("270");
+
+        //#endregion
+
+
+
+        //#region to decimal-float
+
+        expect(parseHourAndMinute(_0[0], _0[1], "integer-number")).toBe(2000);
+        expect(parseHourAndMinute(_1[0], _1[1], "integer-number")).toBe(2002);
+        expect(parseHourAndMinute(_2[0], _2[1], "integer-number")).toBe(2003);
+        expect(parseHourAndMinute(_3[0], _3[1], "integer-number")).toBe(2005);
+        expect(parseHourAndMinute(_4[0], _4[1], "integer-number")).toBe(2007);
+        expect(parseHourAndMinute(_5[0], _5[1], "integer-number")).toBe(2008);
+        expect(parseHourAndMinute(_6[0], _6[1], "integer-number")).toBe(2010);
+        expect(parseHourAndMinute(_7[0], _7[1], "integer-number")).toBe(2012);
+        expect(parseHourAndMinute(_8[0], _8[1], "integer-number")).toBe(2013);
+        expect(parseHourAndMinute(_9[0], _9[1], "integer-number")).toBe(2015);
+        expect(parseHourAndMinute(_10[0], _10[1], "integer-number")).toBe(2017);
+        expect(parseHourAndMinute(_11[0], _11[1], "integer-number")).toBe(2018);
+        expect(parseHourAndMinute(_12[0], _12[1], "integer-number")).toBe(2020);
+        expect(parseHourAndMinute(_13[0], _13[1], "integer-number")).toBe(2022);
+        expect(parseHourAndMinute(_14[0], _14[1], "integer-number")).toBe(2023);
+        expect(parseHourAndMinute(_15[0], _15[1], "integer-number")).toBe(2025);
+        expect(parseHourAndMinute(_16[0], _16[1], "integer-number")).toBe(2027);
+        expect(parseHourAndMinute(_17[0], _17[1], "integer-number")).toBe(2028);
+        expect(parseHourAndMinute(_18[0], _18[1], "integer-number")).toBe(2030);
+        expect(parseHourAndMinute(_19[0], _19[1], "integer-number")).toBe(2032);
+        expect(parseHourAndMinute(_20[0], _20[1], "integer-number")).toBe(2033);
+        expect(parseHourAndMinute(_21[0], _21[1], "integer-number")).toBe(2035);
+        expect(parseHourAndMinute(_22[0], _22[1], "integer-number")).toBe(2037);
+        expect(parseHourAndMinute(_23[0], _23[1], "integer-number")).toBe(2038);
+        expect(parseHourAndMinute(_24[0], _24[1], "integer-number")).toBe(2040);
+        expect(parseHourAndMinute(_25[0], _25[1], "integer-number")).toBe(2042);
+        expect(parseHourAndMinute(_26[0], _26[1], "integer-number")).toBe(2043);
+        expect(parseHourAndMinute(_27[0], _27[1], "integer-number")).toBe(2045);
+        expect(parseHourAndMinute(_28[0], _28[1], "integer-number")).toBe(2047);
+        expect(parseHourAndMinute(_29[0], _29[1], "integer-number")).toBe(2048);
+        expect(parseHourAndMinute(_30[0], _30[1], "integer-number")).toBe(2050);
+        expect(parseHourAndMinute(_31[0], _31[1], "integer-number")).toBe(2052);
+        expect(parseHourAndMinute(_32[0], _32[1], "integer-number")).toBe(2053);
+        expect(parseHourAndMinute(_33[0], _33[1], "integer-number")).toBe(2055);
+        expect(parseHourAndMinute(_34[0], _34[1], "integer-number")).toBe(2057);
+        expect(parseHourAndMinute(_35[0], _35[1], "integer-number")).toBe(2058);
+        expect(parseHourAndMinute(_36[0], _36[1], "integer-number")).toBe(2060);
+        expect(parseHourAndMinute(_37[0], _37[1], "integer-number")).toBe(2062);
+        expect(parseHourAndMinute(_38[0], _38[1], "integer-number")).toBe(2063);
+        expect(parseHourAndMinute(_39[0], _39[1], "integer-number")).toBe(2065);
+        expect(parseHourAndMinute(_40[0], _40[1], "integer-number")).toBe(2067);
+        expect(parseHourAndMinute(_41[0], _41[1], "integer-number")).toBe(2068);
+        expect(parseHourAndMinute(_42[0], _42[1], "integer-number")).toBe(2070);
+        expect(parseHourAndMinute(_43[0], _43[1], "integer-number")).toBe(2072);
+        expect(parseHourAndMinute(_44[0], _44[1], "integer-number")).toBe(2073);
+        expect(parseHourAndMinute(_45[0], _45[1], "integer-number")).toBe(2075);
+        expect(parseHourAndMinute(_46[0], _46[1], "integer-number")).toBe(2077);
+        expect(parseHourAndMinute(_47[0], _47[1], "integer-number")).toBe(2078);
+        expect(parseHourAndMinute(_48[0], _48[1], "integer-number")).toBe(2080);
+        expect(parseHourAndMinute(_49[0], _49[1], "integer-number")).toBe(2082);
+        expect(parseHourAndMinute(_50[0], _50[1], "integer-number")).toBe(2083);
+        expect(parseHourAndMinute(_51[0], _51[1], "integer-number")).toBe(2085);
+        expect(parseHourAndMinute(_52[0], _52[1], "integer-number")).toBe(2087);
+        expect(parseHourAndMinute(_53[0], _53[1], "integer-number")).toBe(2088);
+        expect(parseHourAndMinute(_54[0], _54[1], "integer-number")).toBe(2090);
+        expect(parseHourAndMinute(_55[0], _55[1], "integer-number")).toBe(2092);
+        expect(parseHourAndMinute(_56[0], _56[1], "integer-number")).toBe(2093);
+        expect(parseHourAndMinute(_57[0], _57[1], "integer-number")).toBe(2095);
+        expect(parseHourAndMinute(_58[0], _58[1], "integer-number")).toBe(2097);
+        expect(parseHourAndMinute(_59[0], _59[1], "integer-number")).toBe(2098);
+
+        expect(parseHourAndMinute(8, 5, "integer-number")).toBe(808);
+        expect(parseHourAndMinute(2, 26, "integer-number")).toBe(243);
+        expect(parseHourAndMinute(4, 55, "integer-number")).toBe(492);
+        expect(parseHourAndMinute(3, 20, "integer-number")).toBe(333);
+        expect(parseHourAndMinute(11, 34, "integer-number")).toBe(1157);
+        expect(parseHourAndMinute(6, 40, "integer-number")).toBe(667);
+        expect(parseHourAndMinute(9, 13, "integer-number")).toBe(922);
+        expect(parseHourAndMinute(4, 25, "integer-number")).toBe(442);
+        expect(parseHourAndMinute(3, 58, "integer-number")).toBe(397);
+        expect(parseHourAndMinute(2, 42, "integer-number")).toBe(270);
+
+        //#endregion
+
     })
 
 
@@ -612,6 +769,28 @@ describe("Time Parsers", () => {
         expect(parseMinuteCount(1, 'decimal-number')).toBe(0.02);
         expect(parseMinuteCount(60, 'decimal-number')).toBe(1.00);
         expect(parseMinuteCount(76, 'decimal-number')).toBe(1.27);
+
+        //#endregion
+
+
+        //#region to integer-string
+
+        expect(parseMinuteCount(126, 'integer-string')).toBe("210");
+        expect(parseMinuteCount(0, 'integer-string')).toBe("0");
+        expect(parseMinuteCount(1, 'integer-string')).toBe("2");
+        expect(parseMinuteCount(60, 'integer-string')).toBe("100");
+        expect(parseMinuteCount(76, 'integer-string')).toBe("127");
+
+        //#endregion
+
+
+        //#region to integer-number
+
+        expect(parseMinuteCount(126, 'integer-number')).toBe(210);
+        expect(parseMinuteCount(0, 'integer-number')).toBe(0);
+        expect(parseMinuteCount(1, 'integer-number')).toBe(2);
+        expect(parseMinuteCount(60, 'integer-number')).toBe(100);
+        expect(parseMinuteCount(76, 'integer-number')).toBe(127);
 
         //#endregion
 

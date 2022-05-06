@@ -19,9 +19,7 @@
   "homepage": "https://github.com/Vieolo/parsers-js#readme",
   "dependencies": {
     "@vieolo/date": "github:Vieolo/date-js#master",
-    "@vieolo/regex-library": "github:Vieolo/regex-library-js#0.1.0",
-    "install": "^0.13.0",
-    "npm": "^7.18.1"
+    "@vieolo/regex-library": "github:Vieolo/regex-library-js#0.1.0"
   },
   "devDependencies": {
     "@babel/preset-env": "^7.14.5",
