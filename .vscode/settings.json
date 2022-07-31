@@ -1,0 +1,8 @@
+{
+    "files.exclude": {
+        "number_parsers": true,
+        "string_parsers": true,
+        "time_parsers": true,
+        "xml_parsers": true,
+    }   
+}

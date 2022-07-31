@@ -1,5 +1,5 @@
 // Parsers
-import { toFixed, toFixedFloat } from '../number_parsers/index';
+import { toFixed, toFixedFloat } from '../number_parsers';
 
 // Installed Package
 import VDate from '@vieolo/date';
@@ -115,4 +115,43 @@ export function parseFormattedTime(time: string, returnType: 'decimal-number' | 
 	else parsed = parseMinuteCount(minuteCount, 'decimal-string');
 	
     return parsed;
+}
+
+
+/**
+ * This function receives an array of entries and combine those close to each other, separated by the maximum allowed difference.
+ * 
+ * For example, four entry objects are given. (to simplify this example, the times are in hours)
+ * 1. {start: 1, end: 2}
+ * 2. {start: 2, end: 3}
+ * 3. {start: 8, end: 9}
+ * 4. {start: 11, end: 12}
+ * 
+ * If the maximum allowed difference is 4 hours, the first and last two entries are separately combined.
+ * i.e. `[{start: 1, end: 3}, {start: 8, end: 12}]`
+ * @param entries An array of objects, containing the start and end of the entries
+ * @param maximumAllowedDifference The maximum allowed difference between the end of one entry and the start of the next in milliseconds
+ */
+export function parseTimeEntries(entries: {start: string | number | Date | VDate, end: string | number | Date | VDate}[], maximumAllowedDifference: number) : {start: VDate, end: VDate}[] {
+	let com: {start: VDate, end: VDate}[] = []
+
+	for (let i = 0; i < entries.length; i++) {
+		const e = entries[i];
+		let start = new VDate(["string", "number"].includes(typeof e.start) ? e.start : (e.start as Date).getTime())
+		let end = new VDate(["string", "number"].includes(typeof e.end) ? e.end : (e.end as Date).getTime())
+		let lastCom = com[com.length - 1];
+
+		if (
+			com.length === 0 ||
+			((start.getTime() - lastCom.end.getTime()) > maximumAllowedDifference)
+		) {
+			com.push({start: start, end: end})
+			continue
+		}		
+
+		lastCom.end = end
+	}
+
+
+	return com;
 }
