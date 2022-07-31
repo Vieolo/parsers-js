@@ -1,6 +1,6 @@
 {
   "name": "@vieolo/parsers",
-  "version": "0.2.5",
+  "version": "0.2.6",
   "description": "The Parser functions",
   "main": "index.js",
   "scripts": {
@@ -18,8 +18,8 @@
   },
   "homepage": "https://github.com/Vieolo/parsers-js#readme",
   "dependencies": {
-    "@vieolo/date": "github:Vieolo/date-js#master",
-    "@vieolo/regex-library": "github:Vieolo/regex-library-js#0.1.0"
+    "@vieolo/date": "github:Vieolo/date-js#1.0.0",
+    "@vieolo/regex-library": "^0.1.4"
   },
   "devDependencies": {
     "@babel/preset-env": "^7.14.5",

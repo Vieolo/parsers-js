@@ -1,5 +1,8 @@
 # Change Log
 
+## 0.2.6 (2022-07-31)
+- Added `parseTimeEntries` to time parsers
+
 ## 0.2.5 (2022-05-06)
 - Added integer to `parseMinuteCount` and `parseHourAndMinute`
 
