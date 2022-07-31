@@ -1,9 +1,11 @@
 // Parsers
-import { 
-    parseHourAndMinute, 
+import VDate from '@vieolo/date';
+import {
+    parseHourAndMinute,
     parseDecimalTime,
     parseMinuteCount,
-    parseFormattedTime
+    parseFormattedTime,
+    parseTimeEntries
 } from '../src/time_parsers/time_parsers'
 
 
@@ -918,4 +920,32 @@ describe("Time Parsers", () => {
 
     })
 
+
+    it("Parse the time entries correctly", () => {
+
+        let entries1: { start: string | number | Date | VDate, end: string | number | Date | VDate }[] = [
+            { start: new VDate(2020, 1, 1, 10, 10), end: new VDate(2020, 1, 1, 12, 0) },
+            { start: new VDate(2020, 1, 1, 12, 10).toISOString(), end: new VDate(2020, 1, 1, 12, 20).toISOString() },
+            { start: new VDate(2020, 1, 2, 10, 22), end: new VDate(2020, 1, 2, 14, 54) },
+
+            { start: new VDate(2020, 1, 3, 22, 0), end: new VDate(2020, 1, 3, 23, 54).getTime() },
+            { start: new VDate(2020, 1, 4, 2, 14).getTime(), end: new VDate(2020, 1, 4, 22, 18) },
+
+            // Here, the difference between the first entry and second entry is exactly 24 hours
+            { start: new VDate(2020, 1, 6, 1, 0), end: new VDate(2020, 1, 8, 1, 0) },
+            { start: new VDate(2020, 1, 9, 1, 0), end: new VDate(2020, 1, 9, 2, 10) },
+
+            // Here, the difference between the start of this entry and the end of the last entry is 24 hours and 1 seconds, hence the split
+            { start: new VDate(2020, 1, 10, 2, 10, 1), end: new VDate(2020, 1, 10, 2, 20) },
+        ]
+
+        let resutl1 = parseTimeEntries(entries1, 24 * 60 * 60 * 1000) // 24 hours max allowed difference
+
+        expect(resutl1).toEqual([
+            { start: new VDate(2020, 1, 1, 10, 10), end: new VDate(2020, 1, 2, 14, 54) },
+            { start: new VDate(2020, 1, 3, 22, 0), end: new VDate(2020, 1, 4, 22, 18) },
+            { start: new VDate(2020, 1, 6, 1, 0), end: new VDate(2020, 1, 9, 2, 10) },
+            { start: new VDate(2020, 1, 10, 2, 10, 1), end: new VDate(2020, 1, 10, 2, 20) },
+        ])
+    })
 })
