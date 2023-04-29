@@ -18,7 +18,7 @@
   },
   "homepage": "https://github.com/Vieolo/parsers-js#readme",
   "dependencies": {
-    "@vieolo/date": "github:Vieolo/date-js#1.0.0",
+    "@vieolo/vdate": "^2.0.0",
     "@vieolo/regex-library": "^0.1.4"
   },
   "devDependencies": {
