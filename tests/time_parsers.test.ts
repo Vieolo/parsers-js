@@ -1,5 +1,5 @@
 // Parsers
-import VDate from '@vieolo/date';
+import VDate from '@vieolo/vdate';
 import {
     parseHourAndMinute,
     parseDecimalTime,

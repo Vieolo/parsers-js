@@ -2,7 +2,7 @@
 import { toFixed, toFixedFloat } from '../number_parsers';
 
 // Installed Package
-import VDate from '@vieolo/date';
+import VDate from '@vieolo/vdate';
 import { time24Hours, time24HoursWithSeconds } from '@vieolo/regex-library';
 
 export function parseHourAndMinute(hour: number, minute: number) : string;
