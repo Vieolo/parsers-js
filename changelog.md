@@ -1,5 +1,8 @@
 # Change Log
 
+## 0.2.7 (2023-04-29)
+- Updated dependencies
+
 ## 0.2.6 (2022-07-31)
 - Added `parseTimeEntries` to time parsers
 
