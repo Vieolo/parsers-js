@@ -5,7 +5,7 @@ The package managing the parsing of different values
 to install, add the following to the `dependency` key of the `package.json` file of the project.
 
 ```json
-"@vieolo/parsers": "github:Vieolo/parsers-js#0.2.6"
+"@vieolo/parsers": "github:Vieolo/parsers-js#0.2.7"
 ```
 
 ## Usage

@@ -1,4 +1,4 @@
-import VDate from '@vieolo/date';
+import VDate from '@vieolo/vdate';
 export declare function parseHourAndMinute(hour: number, minute: number): string;
 export declare function parseHourAndMinute(hour: number, minute: number, returnType?: 'string'): string;
 export declare function parseHourAndMinute(hour: number, minute: number, returnType?: 'date'): Date;
