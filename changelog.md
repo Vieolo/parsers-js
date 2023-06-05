@@ -1,5 +1,8 @@
 # Change Log
 
+## 0.3.0 (2023-06-05)
+- Changed the License to MIT-0
+
 ## 0.2.7 (2023-04-29)
 - Updated dependencies
 

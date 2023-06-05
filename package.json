@@ -1,6 +1,6 @@
 {
   "name": "@vieolo/parsers",
-  "version": "0.2.7",
+  "version": "0.3.0",
   "description": "Providing utility functionalities for parsing different values",
   "main": "index.js",
   "scripts": {
