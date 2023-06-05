@@ -1,7 +1,7 @@
 {
   "name": "@vieolo/parsers",
   "version": "0.2.7",
-  "description": "The Parser functions",
+  "description": "Providing utility functionalities for parsing different values",
   "main": "index.js",
   "scripts": {
     "test": "jest --runInBand",
@@ -12,7 +12,7 @@
     "url": "git+https://github.com/Vieolo/parsers-js.git"
   },
   "author": "Vieolo",
-  "license": "UNLICENSED",
+  "license": "MIT-0",
   "bugs": {
     "url": "https://github.com/Vieolo/parsers-js/issues"
   },
