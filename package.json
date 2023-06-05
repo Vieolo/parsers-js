@@ -1,7 +1,7 @@
 {
   "name": "@vieolo/parsers",
   "version": "0.2.7",
-  "description": "The Parser functions",
+  "description": "Providing utility functionalities for parsing different values",
   "main": "index.js",
   "scripts": {
     "test": "jest --runInBand",
@@ -12,20 +12,20 @@
     "url": "git+https://github.com/Vieolo/parsers-js.git"
   },
   "author": "Vieolo",
-  "license": "UNLICENSED",
+  "license": "MIT-0",
   "bugs": {
     "url": "https://github.com/Vieolo/parsers-js/issues"
   },
   "homepage": "https://github.com/Vieolo/parsers-js#readme",
   "dependencies": {
     "@vieolo/vdate": "^2.0.0",
-    "@vieolo/regex-library": "^0.1.4"
+    "@vieolo/regex-library": "^0.2.0"
   },
   "devDependencies": {
-    "@babel/preset-env": "^7.14.5",
-    "@types/jest": "^26.0.23",
-    "babel-jest": "^27.0.2",
-    "jest": "^27.0.4",
-    "ts-jest": "^27.0.3"
+    "@babel/preset-env": "^7.22.4",
+    "@types/jest": "^29.5.2",
+    "babel-jest": "^29.5.0",
+    "jest": "^29.5.0",
+    "ts-jest": "^29.1.0"
   }
 }
