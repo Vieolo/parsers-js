@@ -1,5 +1,9 @@
 # Change Log
 
+## 0.3.1 (2023-07-19)
+- Updated dependencies
+- Added `trim` to `toFixed` ([#1](https://github.com/Vieolo/parsers-js/issues/1))
+
 ## 0.3.0 (2023-06-05)
 - Changed the License to MIT-0
 
