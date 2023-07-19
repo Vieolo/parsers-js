@@ -9,8 +9,10 @@ describe("Number Parsers", () => {
         expect(toFixed(22.236, 2)).toBe("22.24");
         expect(toFixed(22.236, 6)).toBe("22.236000");
         expect(toFixed(22.236, 6, true)).toBe("22.236");
+        expect(toFixed(20002.20036, 9, false)).toBe("20002.200360000");
         expect(toFixed(20002.20036, 9, true)).toBe("20002.20036");
         expect(toFixed(22, 2)).toBe("22.00");
+        expect(toFixed(22, 2, true)).toBe("22");
         expect(toFixed(22, 0)).toBe("22");
         expect(toFixed(22, 2, true)).toBe("22");
         expect(toFixed(0, 2)).toBe("0.00");

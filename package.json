@@ -1,6 +1,6 @@
 {
   "name": "@vieolo/parsers",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "Providing utility functionalities for parsing different values",
   "main": "index.js",
   "scripts": {
@@ -18,7 +18,7 @@
   },
   "homepage": "https://github.com/Vieolo/parsers-js#readme",
   "dependencies": {
-    "@vieolo/vdate": "^2.0.0",
+    "@vieolo/vdate": "^2.2.0",
     "@vieolo/regex-library": "^0.2.0"
   },
   "devDependencies": {
